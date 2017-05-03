@@ -1,0 +1,19 @@
+
+/* CONTAINER */
+
+.l-container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $xs-cont;
+    padding-right: $xs-cont;
+    @include sm {
+        padding-left: $sm-cont;
+        padding-right: $sm-cont;
+        width: $sm-width-cont;
+    }
+    @include lg {
+        width: $lg-width-cont;
+    }
+}
+

@@ -1,0 +1,43 @@
+/* GRID */
+
+.#{$g-parent-class} {
+    letter-spacing: -0.31em;
+    *letter-spacing: normal;
+    *word-spacing: -0.43em;
+    text-rendering: optimizespeed;
+    font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+    display: -webkit-flex;
+    -webkit-flex-flow: row wrap;
+    display: -ms-flexbox;
+    -ms-flex-flow: row wrap;
+    -ms-align-content: flex-start;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+    > .#{$g-child-class} {
+        position: relative;
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        width: 100%;
+        letter-spacing: normal;
+        word-spacing: normal;
+        vertical-align: top;
+        text-rendering: auto;
+      }
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    table .#{$g-parent-class} {
+        display: block;
+    }
+}
+.opera-only:-o-prefocus,
+.#{$g-parent-class} {
+    word-spacing: -0.43em;
+}
+
+/* custom font stack for content */
+
+.#{$g-parent-class} .#{$g-child-class} {
+    font-family: $font-family-base;
+}
+

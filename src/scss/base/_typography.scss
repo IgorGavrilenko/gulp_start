@@ -1,0 +1,14 @@
+
+/* TYPOGRAPHY */
+
+/* links */
+
+a {
+  color: $link-color;
+  text-decoration: $link-decor;
+}
+a:focus, a:hover, a:visited {
+  text-decoration: $link-decor-active;
+  color: $link-color-active;
+}
+

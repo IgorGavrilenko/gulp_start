@@ -1,0 +1,79 @@
+// Fonts
+
+$font-family-sans-serif:     -apple-system, BlinkMacSystemFont, "Segoe UI" ,Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default;
+$font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
+
+// Base
+
+$font-family-base: $font-family-sans-serif !default;
+$font-size-root: 16px !default;
+$line-height-base: 1.5 !default;
+$color-base: #333 !default;
+$background-color-base: #fff !default;
+// $em-base: 16px !default;
+$selection: #b3d4fc;
+
+// Body
+
+$font-size-body: 100% !default;
+
+// Links
+
+$link-color: #0275d8 !default;
+$link-color-active: #014c8c !default;
+$link-decor: none;
+$link-decor-active: underline !default;
+
+// Colors
+
+$hr-color: #eee !default;
+$placeholder-color: #333 !default;
+// Components
+// button
+// forms
+
+// Z-index master list
+
+$z-xxs: -1 !default;
+$z-zero: 0 !default;
+$z-xs: 1 !default;
+$z-sm: 2 !default;
+$z-md: 3 !default;
+$z-lg: 4 !default;
+$z-xl: 5 !default;
+
+// media
+
+$xs-width: 599px !default;
+$xsm-width: 600px !default;
+$sm-width: 900px !default;
+$md-width: 1200px !default;
+$lg-width: 1800px !default;
+
+// container
+
+$xs-cont: 15px !default;
+$sm-cont: 0 !default;
+$md-cont: 0 !default;
+// $min-width-cont: 100% !default;
+$sm-width-cont: 94% !default;
+$md-width-cont: 970px !default;
+$lg-width-cont: 1170px !default;
+
+// grid
+
+$g-parent-class: "grid";
+$g-child-class: "grid__item";
+
+//  SVG background
+
+// pattern.svg
+// pattern.png
+// pattern@2x.png
+
+$image-path: '../img' !default;
+$fallback-extension: 'png' !default;
+$retina-suffix: '@2x';
+
+

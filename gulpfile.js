@@ -1,5 +1,5 @@
 // npm i
-// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf main-bower-files gulp-group-css-media-queries gulpSequence gulp-main-bower-files browser-sync node-bourbon
+// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf main-bower-files  gulpSequence gulp-main-bower-files browser-sync node-bourbon
 // bower i
 // gulp bowerFiles
 // gulp (watch)
@@ -21,7 +21,6 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     rimraf = require('rimraf'),
     gulprimraf = require('gulp-rimraf'),
-    gcmq = require('gulp-group-css-media-queries'),
     bourbon = require('node-bourbon'),
     concat = require('gulp-concat'),
     gulpSequence = require('gulp-sequence'),
@@ -36,15 +35,15 @@ var gulp = require('gulp'),
 
         gulp.task('bowerJs', function() {
             return gulp.src(mainBowerFiles('**/*.js'))
-                .pipe(gulp.dest('src/js/vendors/partials'))
+                .pipe(gulp.dest('src/js/vendors'))
         });
-// riggerJs
+// concatJs
 
-   gulp.task('riggerJs', function () {
-          gulp.src('src/js/vendors/*.js')
-              .pipe(rigger())
-              .pipe(gulp.dest('src/js/'))
-      });
+   gulp.task('concatJs', function() {
+     return gulp.src('src/js/vendors/*.js')
+       .pipe(concat('scripts.min.js'))
+       .pipe(gulp.dest('src/js/'));
+   });
 // bowerCss
 
         gulp.task('bowerCss', function() {
@@ -53,14 +52,14 @@ var gulp = require('gulp'),
                 prefix: "_",
                 extname: ".scss"
               }))
-            .pipe(gulp.dest('src/scss/vendors'))
+            .pipe(gulp.dest('src/scss'))
         });
 
 // bowerfiles
 
     gulp.task('bowerFiles', gulpSequence(
         ['bowerJs', 'bowerCss'],
-        ['riggerJs']
+        ['concatJs']
     ));
 // DEV
 /////////////////////////////////////////
@@ -126,7 +125,7 @@ var gulp = require('gulp'),
             gulp.start('html-dev');
         });
         watch(['src/js/vendors/*.js'], function(event, cb) {
-            gulp.start('riggerJs');
+            gulp.start('concatJs');
         });
         watch(['src/js/*.js'], function(event, cb) {
             gulp.start('js-dev');
@@ -170,19 +169,15 @@ gulp.task('default', [
         gulp.src('src/css/*.css')
         .pipe(autoprefixer('last 15 versions'))
         .pipe(csscomb())
-        .pipe(gcmq())
         .pipe(gulp.dest('build/css/'))
     });
 // js
 
     gulp.task('js', function () {
-        gulp.src('src/js/*.js')
+        gulp.src('src/js')
             .pipe(gulp.dest('build/js/'))
     });
-    gulp.task('jsOldIe', function () {
-        gulp.src('src/js/ie/*.js')
-            .pipe(gulp.dest('build/js/ie'))
-    });
+
 // img
 
     gulp.task('img', function () {
@@ -229,5 +224,5 @@ gulp.task('min', [
 
 gulp.task('build', gulpSequence(
     ['del'],
-    ['html', 'js', 'jsOldIe', 'css', 'fonts', 'img', 'min']
+    ['html', 'js', 'css', 'fonts', 'img', 'min']
 ));

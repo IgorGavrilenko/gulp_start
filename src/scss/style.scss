@@ -1,22 +1,21 @@
-@import "utils/_variables";
-@import "utils/_mixins";
+@import "_variables";
+@import "_mixins";
 
-@import "vendors/_normalize";
-@import "base/_print";
-@import "base/_reboot";
-@import "base/_typography";
+@import "_normalize";
+@import "_print";
+@import "_reboot";
+@import "_typography";
 
-@import "layout/_grid";
-@import "layout/_container";
-@import "layout/_header";
-@import "layout/_content";
-@import "layout/_sidebar";
-@import "layout/_footer";
+@import "_grid";
+@import "_container";
+@import "_header";
+@import "_content";
+@import "_sidebar";
+@import "_footer";
 
+@import "_vendors";
+@import "_vendorsExts";
 
-@import "vendors/_vendors";
-@import "vendorsExts/_vendorsExts";
+@import "_page";
 
-@import "pages/_page";
-
-@import "utils/_placeholders";
+@import "_placeholders";

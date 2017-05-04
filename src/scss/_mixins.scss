@@ -47,13 +47,35 @@
 }
 // media
 
-@mixin xs {
-  @media (max-width: #{$xs-width}) {
+// p {
+//   @include xs {
+//     font-size: 18px;
+//   }
+// }
+
+
+// media max
+
+@mixin xmd {
+  @media (max-width: #{$md-width - 1px}) {
     @content;
   }
 }
-@mixin xsm {
-  @media (min-width: #{$xsm-width}) {
+@mixin xlg {
+  @media (max-width: #{$lg-width - 1px}) {
+    @content;
+  }
+}
+@mixin xblg {
+  @media (max-width: #{$blg-width - 1px}) {
+    @content;
+  }
+}
+
+// media min
+
+@mixin xs {
+  @media (max-width: #{$xs-width}) {
     @content;
   }
 }
@@ -72,6 +94,40 @@
     @content;
   }
 }
+@mixin blg {
+  @media (min-width: #{$blg-width}) {
+    @content;
+  }
+}
+
+// media min and max
+
+@mixin media-xs-sm {
+  @media (min-width: #{$xs-width}) and (max-width: #{$sm-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-sm-md {
+  @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-sm-lg {
+  @media (min-width: #{$sm-width}) and (max-width: #{$lg-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-md-lg {
+  @media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
+    @content;
+  }
+}
+
+
+
+
+
+
 @mixin retina {
   @media
     only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -83,34 +139,6 @@
     @content;
   }
 }
-
-// p {
-//   @include xs {
-//     font-size: 18px;
-//   }
-// }
-
-@mixin media-xs-sm {
-  @media (min-width: #{$xs-width}) and (max-width: #{$sm-width - 1px}) {
-    @content;
-  }
-}
-@mixin media-xsm-sm {
-  @media (min-width: #{$xsm-width}) and (max-width: #{$sm-width - 1px}) {
-    @content;
-  }
-}
-@mixin media-sm-md {
-  @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
-    @content;
-  }
-}
-@mixin media-md-lg {
-  @media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
-    @content;
-  }
-}
-
 
 @mixin media ($media-min, $media-max: false) {
      @if $media-max != false {

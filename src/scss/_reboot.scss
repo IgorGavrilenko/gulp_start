@@ -1,5 +1,5 @@
 
-/*! REBOOT */
+/* reboot */
 
 html {
     font-size: $font-size-root;
@@ -190,13 +190,3 @@ table {
     background-color: transparent;
 }
 
-/* clearfix */
-
-.clearfix:before,
-.clearfix:after {
-    display: table;
-    content: ' ';
-}
-.clearfix:after {
-    clear: both;
-}

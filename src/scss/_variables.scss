@@ -1,8 +1,8 @@
 // Fonts
 
-$font-family-sans-serif:     -apple-system, BlinkMacSystemFont, "Segoe UI" ,Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default;
-$font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI" ,Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace !default;
 
 // Base
 
@@ -46,20 +46,21 @@ $z-xl: 5 !default;
 // media
 
 $xs-width: 599px !default;
-$xsm-width: 600px !default;
-$sm-width: 900px !default;
-$md-width: 1200px !default;
-$lg-width: 1800px !default;
+$sm-width: 600px !default;
+$md-width: 992px !default;
+$lg-width: 1200px !default;
+$blg-width: 1800px !default;
+
+// bs3 media
+
+// $xs-width: 767px !default;
+// $sm-width: 768px !default;
+// $md-width: 992px !default;
+// $lg-width: 1200px !default;
 
 // container
 
-$xs-cont: 15px !default;
-$sm-cont: 0 !default;
-$md-cont: 0 !default;
-// $min-width-cont: 100% !default;
-$sm-width-cont: 94% !default;
-$md-width-cont: 970px !default;
-$lg-width-cont: 1170px !default;
+$cont-width: 1200px;
 
 // grid
 

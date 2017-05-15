@@ -83,26 +83,7 @@ var gulp = require('gulp'),
             .pipe(gulp.dest('src/'))
             .pipe(reload({stream: true}));
     });
-// js
 
-    gulp.task('js-dev', function () {
-        gulp.src('src/js/*.js')
-            .pipe(gulp.dest('src/js'))
-            .pipe(reload({stream: true}));
-    });
-
-// img
-
-    gulp.task('img-dev', function () {
-        gulp.src('src/img/**/*')
-        .pipe(reload({stream: true}));
-    });
-// fonts
-
-    gulp.task('fonts-dev', function () {
-        gulp.src('src/fonts/**/*')
-        .pipe(reload({stream: true}));
-    });
 // webserver
 
     var config = {
@@ -124,20 +105,11 @@ var gulp = require('gulp'),
         watch(['src/template/**/*.html'], function(event, cb) {
             gulp.start('html-dev');
         });
-        watch(['src/js/vendors/*.js'], function(event, cb) {
-            gulp.start('concatJs');
-        });
-        watch(['src/js/*.js'], function(event, cb) {
-            gulp.start('js-dev');
-        });
         watch(['src/scss/**/*.scss'], function(event, cb) {
             gulp.start('scss-dev');
         });
-        watch(['src/img/**/*'], function(event, cb) {
-            gulp.start('img-dev');
-        });
-        watch(['src/fonts/**/*'], function(event, cb) {
-            gulp.start('fonts-dev');
+        watch(['src/js/vendors/*.js'], function(event, cb) {
+            gulp.start('concatJs');
         });
     });
 

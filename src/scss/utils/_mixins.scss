@@ -1,0 +1,218 @@
+@import "bourbon";
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// CSS image replacement
+
+@mixin text-hide() {
+  font: "0/0" a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+// alinement
+
+@mixin vert-dtc-m() {
+  display: table-cell;
+  vertical-align: middle;
+}
+@mixin vert-dtc-t() {
+  display: table-cell;
+  vertical-align: top;
+}
+@mixin vert-dtc-b() {
+  display: table-cell;
+  vertical-align: bottom;
+}
+@mixin vert-dib-m() {
+  display: inline-block;
+  vertical-align: middle;
+}
+@mixin vert-dib-top() {
+  display: inline-block;
+  vertical-align: top;
+}
+// img
+
+@mixin img-resp() {
+  width: auto\9;
+  max-width: 100%;
+  height: auto;
+}
+@mixin table-responsive() {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+// media
+
+// p {
+//   @include xs {
+//     font-size: 18px;
+//   }
+// }
+
+// media max
+
+@mixin xmd {
+  @media (max-width: #{$md-width - 1px}) {
+    @content;
+  }
+}
+@mixin xlg {
+  @media (max-width: #{$lg-width - 1px}) {
+    @content;
+  }
+}
+@mixin xblg {
+  @media (max-width: #{$blg-width - 1px}) {
+    @content;
+  }
+}
+// media min
+
+@mixin xs {
+  @media (max-width: #{$xs-width}) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (min-width: #{$sm-width}) {
+    @content;
+  }
+}
+@mixin md {
+  @media (min-width: #{$md-width}) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: #{$lg-width}) {
+    @content;
+  }
+}
+@mixin blg {
+  @media (min-width: #{$blg-width}) {
+    @content;
+  }
+}
+// media min and max
+
+@mixin media-xs-sm {
+  @media (min-width: #{$xs-width}) and (max-width: #{$sm-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-sm-md {
+  @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-sm-lg {
+  @media (min-width: #{$sm-width}) and (max-width: #{$lg-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-md-lg {
+  @media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
+    @content;
+  }
+}
+// media custom prop
+
+// p {
+//   @include (600, 900) {
+//     font-size: 18px;
+//   }
+// }
+
+@mixin media ($media-min, $media-max: false) {
+     @if $media-max != false {
+          @media (min-width: #{$media-min}px) and (max-width: #{$media-max - 1}px) {
+            @content;
+        }
+    }
+    @else {
+          @media (min-width: #{$media-min}px) {
+    @content;
+        }
+    }
+}
+// retina
+
+@mixin retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+//  SVG background
+
+// body {
+//   @include background-image('pattern');
+// }
+@mixin background-image($name, $size:false){
+    background-image: url(#{$image-path}/#{$name}.svg);
+    @if($size){
+        background-size: $size;
+    }
+    .no-svg &{
+        background-image: url(#{$image-path}/#{$name}.#{$fallback-extension});
+
+        @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+          background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension});
+        }
+    }
+}
+
+// clearfix
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+// input placeholder
+
+@mixin placeholder($placeholder-color, $font){
+    &::-webkit-input-placeholder {
+        color: $placeholder-color;
+        font-family:$font-family-base;
+    }
+    &::-moz-placeholder {
+        color: $placeholder-color;
+        font-family:$font-family-base;
+    }
+    &:-ms-input-placeholder {
+        color: $placeholder-color;
+        font-family:$font-family-base;
+    }
+    &:-moz-placeholder {
+        color: $placeholder-color;
+        font-family:$font-family-base;
+    }
+    &:focus::-webkit-input-placeholder {
+      color: transparent!important;
+    }
+    &:focus::-moz-placeholder {
+      color: transparent!important;
+    }
+    &:focus:-moz-placeholder {
+      color: transparent!important;
+    }
+}

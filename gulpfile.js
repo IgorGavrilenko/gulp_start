@@ -35,15 +35,15 @@ var gulp = require('gulp'),
 
         gulp.task('bowerJs', function() {
             return gulp.src(mainBowerFiles('**/*.js'))
-                .pipe(gulp.dest('src/assets/js/plugins'))
+                .pipe(gulp.dest('src/js/plugins'))
         });
 
 // concatJs
 
    gulp.task('concatJs', function() {
-     return gulp.src('src/assets/js/plugins/*.js')
+     return gulp.src('src/js/plugins/*.js')
        .pipe(concat('plugins.min.js'))
-       .pipe(gulp.dest('src/assets/js/'));
+       .pipe(gulp.dest('src/js/'));
    });
 // bowerCss
 
@@ -53,7 +53,7 @@ var gulp = require('gulp'),
                 prefix: "_",
                 extname: ".scss"
               }))
-            .pipe(gulp.dest('src/assets/scss'))
+            .pipe(gulp.dest('src/scss/vendors/'))
         });
 
 // bowerfiles
@@ -67,13 +67,13 @@ var gulp = require('gulp'),
 // scss
 
     gulp.task('scss-dev', function () {
-      gulp.src('src/assets/scss/**/*.scss')
+      gulp.src('src/scss/**/*.scss')
       .pipe(sourcemaps.init())
         .pipe(sass({
             includePaths: require('node-bourbon').includePaths
             }).on('error', sass.logError))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('src/assets/css/'))
+        .pipe(gulp.dest('src/css/'))
         .pipe(reload({stream: true}));
     });
 // html
@@ -87,9 +87,9 @@ var gulp = require('gulp'),
     // js
 
     gulp.task('js-dev', function () {
-            gulp.src('src/assets/js/main/*.js')
+            gulp.src('src/js/main/*.js')
                 .pipe(rigger())
-                .pipe(gulp.dest('src/assets/js/'))
+                .pipe(gulp.dest('src/js/'))
                 .pipe(reload({stream: true}));
         });
 
@@ -114,13 +114,13 @@ var gulp = require('gulp'),
         watch(['src/template/**/*.html'], function(event, cb) {
             gulp.start('html-dev');
         });
-        watch(['src/assets/scss/**/*.scss'], function(event, cb) {
+        watch(['src/scss/**/*.scss'], function(event, cb) {
             gulp.start('scss-dev');
         });
-        watch(['src/assets/js/main/**/*.js'], function(event, cb) {
+        watch(['src/js/main/**/*.js'], function(event, cb) {
             gulp.start('js-dev');
         });
-        watch(['src/assets/js/plugins/*.js'], function(event, cb) {
+        watch(['src/js/plugins/*.js'], function(event, cb) {
             gulp.start('concatJs');
         });
     });
@@ -149,55 +149,62 @@ gulp.task('default', [
 // css
 
     gulp.task('css', function () {
-        gulp.src('src/assets/css/*.css')
+        gulp.src('src/css/*.css')
         .pipe(autoprefixer('last 15 versions'))
         .pipe(csscomb())
-        .pipe(gulp.dest('build/assets/css/'))
+        .pipe(gulp.dest('build/css/'))
     });
 // js
 
     gulp.task('js', function () {
-        gulp.src('src/assets/js')
-            .pipe(gulp.dest('build/assets/js/'))
+        gulp.src('src/js')
+            .pipe(gulp.dest('build/js/'))
+    });
+
+// ie
+
+    gulp.task('ie', function () {
+        gulp.src('src/js/ie')
+            .pipe(gulp.dest('build/js/ie'))
     });
 
 // img
 
     gulp.task('img', function () {
-        gulp.src('src/assets/img/**/*.*')
+        gulp.src('src/img/**/*.*')
             .pipe(imagemin({
                 progressive: true,
                 svgoPlugins: [{removeViewBox: false}],
                 use: [pngquant()],
                 interlaced: true
             }))
-            .pipe(gulp.dest('build/assets/img/'));
+            .pipe(gulp.dest('build/img/'));
     });
 // fonts
 
     gulp.task('fonts', function() {
-        gulp.src('src/assets/fonts/**/*.*')
-            .pipe(gulp.dest('build/assets/fonts/'))
+        gulp.src('src/fonts/**/*.*')
+            .pipe(gulp.dest('build/fonts/'))
     });
 
 // min
 
     gulp.task('css-min', function() {
-        gulp.src('src/assets/css/*.css')
+        gulp.src('src/css/*.css')
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(rename({
                 suffix: '.min',
             }))
-        .pipe(gulp.dest('build/assets/css/'))
+        .pipe(gulp.dest('build/css/'))
     });
 
     gulp.task('js-min', function() {
-        gulp.src('src/assets/js/*.js')
+        gulp.src('src/js/*.js')
         .pipe(uglify())
         .pipe(rename({
                 suffix: '.min',
             }))
-        .pipe(gulp.dest('build/assets/js/'))
+        .pipe(gulp.dest('build/js/'))
     });
 gulp.task('min', [
     'css-min', 'js-min'
@@ -207,5 +214,5 @@ gulp.task('min', [
 
 gulp.task('build', gulpSequence(
     ['del'],
-    ['html', 'js', 'css', 'fonts', 'img', 'min']
+    ['html', 'js', 'css', 'fonts', 'img', 'min', 'ie']
 ));

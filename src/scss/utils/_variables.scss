@@ -47,7 +47,7 @@ $z-xl: 5 !default;
 
 $xs-width: 599px !default;
 $sm-width: 600px !default;
-$md-width: 992px !default;
+$md-width: 900px !default;
 $lg-width: 1200px !default;
 $blg-width: 1800px !default;
 
@@ -60,6 +60,8 @@ $blg-width: 1800px !default;
 
 // container
 
+$padding-right: 15px;
+$padding-left: 15px;
 $cont-width: 1200px;
 
 // grid

@@ -54,20 +54,19 @@
 }
 // aspect ratio
 
-// @include aspect-ratio (parent, child)
-@mixin aspect-ratio($parent, $child) {
-    .{$parent} {
+// @include aspect-ratio (parent-class, child-class)
+@mixin aspect-ratio($parent-class, $child-class) {
+    .#{$parent-class} {
         position: relative;
         height: 0;
         padding-bottom: 56.25%;
-    }
-
-    .{$parent}__{$child} {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
+        &__#{$child-class} {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
     }
 }
 // media
@@ -117,7 +116,7 @@
     @content;
   }
 }
-@mixin blg {
+@mixin xlg {
   @media (min-width: #{$blg-width}) {
     @content;
   }
@@ -147,23 +146,27 @@
 // media custom prop
 
 // p {
-//   @include (600, 900) {
+//   @include media-min-max (600, 900) {
 //     font-size: 18px;
 //   }
 // }
 
-@mixin media ($media-min, $media-max: false) {
-     @if $media-max != false {
-          @media (min-width: #{$media-min}px) and (max-width: #{$media-max - 1}px) {
-            @content;
-        }
-    }
-    @else {
-          @media (min-width: #{$media-min}px) {
-    @content;
-        }
+@mixin media-min ($media-min) {
+      @media (min-width: #{$media-min}px) {
+        @content;
     }
 }
+@mixin media-max ($media-max) {
+      @media (max-width: #{$media-max - 1}px) {
+        @content;
+    }
+}
+@mixin media-min-max ($media-min, $media-max) {
+      @media (min-width: #{$media-min}px) and (max-width: #{$media-max - 1}px) {
+        @content;
+    }
+}
+
 // retina
 
 @mixin retina {

@@ -79,6 +79,16 @@
 
 // media max
 
+@mixin xs {
+  @media (max-width: #{$xs-width - 1px}) {
+    @content;
+  }
+}
+@mixin xsm {
+  @media (max-width: #{$sm-width - 1px}) {
+    @content;
+  }
+}
 @mixin xmd {
   @media (max-width: #{$md-width - 1px}) {
     @content;
@@ -89,8 +99,8 @@
     @content;
   }
 }
-@mixin xblg {
-  @media (max-width: #{$blg-width - 1px}) {
+@mixin xxlg {
+  @media (max-width: #{$xlg-width - 1px}) {
     @content;
   }
 }
@@ -117,7 +127,7 @@
   }
 }
 @mixin xlg {
-  @media (min-width: #{$blg-width}) {
+  @media (min-width: #{$xlg-width}) {
     @content;
   }
 }

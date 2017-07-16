@@ -5,6 +5,8 @@
 @import "base/_reboot";
 @import "base/_print";
 
+@import "vendors/_concat";
+
 @import "typography/_heading";
 @import "typography/_text";
 @import "typography/_link";
@@ -17,7 +19,5 @@
 @import "layout/_header";
 @import "layout/_sidebar";
 @import "layout/_footer";
-
-@import "vendors/_concat";
 
 @import "page/_page";

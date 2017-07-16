@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     csscomb = require('gulp-csscomb'),
     minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
+    pump = require('pump'),
     rename = require("gulp-rename"),
     sourcemaps = require('gulp-sourcemaps'),
     mainBowerFiles = require('main-bower-files'),
@@ -157,15 +158,15 @@ gulp.task('default', [
 // js
 
     gulp.task('js', function () {
-        gulp.src('src/js')
+        gulp.src('src/js/*.js')
             .pipe(gulp.dest('build/js/'))
     });
 
-// ie
+// helpers
 
-    gulp.task('ie', function () {
-        gulp.src('src/js/ie')
-            .pipe(gulp.dest('build/js/ie'))
+    gulp.task('helpers', function () {
+        gulp.src('src/helpers/*.js')
+            .pipe(gulp.dest('build/helpers'))
     });
 
 // img
@@ -197,14 +198,14 @@ gulp.task('default', [
             }))
         .pipe(gulp.dest('build/css/'))
     });
-
-    gulp.task('js-min', function() {
-        gulp.src('src/js/*.js')
-        .pipe(uglify())
-        .pipe(rename({
-                suffix: '.min',
-            }))
-        .pipe(gulp.dest('build/js/'))
+    gulp.task('js-min', function (cb) {
+      pump([
+          gulp.src('src/js/plugins.min.js'),
+          uglify(),
+          gulp.dest('build/js/')
+        ],
+        cb
+      );
     });
 gulp.task('min', [
     'css-min', 'js-min'
@@ -214,5 +215,5 @@ gulp.task('min', [
 
 gulp.task('build', gulpSequence(
     ['del'],
-    ['html', 'js', 'css', 'fonts', 'img', 'min', 'ie']
+    ['html', 'js', 'css', 'fonts', 'img', 'helpers']
 ));

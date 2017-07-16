@@ -4,6 +4,10 @@ $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI" ,Roboto, 
 $font-family-serif: Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace !default;
 
+// Colors
+
+
+
 // Base
 
 $font-family-base: $font-family-sans-serif !default;
@@ -25,14 +29,6 @@ $link-color-active: #014c8c !default;
 $link-decor: none;
 $link-decor-active: underline !default;
 
-// Colors
-
-$hr-color: #eee !default;
-$placeholder-color: #333 !default;
-// Components
-// button
-// forms
-
 // Z-index master list
 
 $z-xxs: -1 !default;
@@ -45,11 +41,11 @@ $z-xl: 5 !default;
 
 // media
 
-$xs-width: 599px !default;
+// $xs-width: 599px !default;
 $sm-width: 600px !default;
 $md-width: 900px !default;
 $lg-width: 1200px !default;
-$xlg-width: 1800px !default;
+
 
 // bs3 media
 
@@ -80,3 +76,9 @@ $fallback-extension: 'png' !default;
 $retina-suffix: '@2x';
 
 
+$hr-color: #eee !default;
+$placeholder-color: #333 !default;
+// Components
+// button
+
+// $btn-hover:  !default;

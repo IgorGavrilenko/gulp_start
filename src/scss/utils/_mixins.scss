@@ -79,38 +79,34 @@
 
 // media max
 
-@mixin xs {
-  @media (max-width: #{$xs-width - 1px}) {
-    @content;
-  }
-}
-@mixin xsm {
+// @mixin max-xs {
+//   @media (max-width: #{$xs-width - 1px}) {
+//     @content;
+//   }
+// }
+@mixin max-sm {
   @media (max-width: #{$sm-width - 1px}) {
     @content;
   }
 }
-@mixin xmd {
+@mixin max-md {
   @media (max-width: #{$md-width - 1px}) {
     @content;
   }
 }
-@mixin xlg {
+@mixin max-lg {
   @media (max-width: #{$lg-width - 1px}) {
     @content;
   }
 }
-@mixin xxlg {
-  @media (max-width: #{$xlg-width - 1px}) {
-    @content;
-  }
-}
+
 // media min
 
-@mixin xs {
-  @media (max-width: #{$xs-width}) {
-    @content;
-  }
-}
+// @mixin xs {
+//   @media (max-width: #{$xs-width}) {
+//     @content;
+//   }
+// }
 @mixin sm {
   @media (min-width: #{$sm-width}) {
     @content;
@@ -126,18 +122,14 @@
     @content;
   }
 }
-@mixin xlg {
-  @media (min-width: #{$xlg-width}) {
-    @content;
-  }
-}
+
 // media min and max
 
-@mixin media-xs-sm {
-  @media (min-width: #{$xs-width}) and (max-width: #{$sm-width - 1px}) {
-    @content;
-  }
-}
+// @mixin media-xs-sm {
+//   @media (min-width: #{$xs-width}) and (max-width: #{$sm-width - 1px}) {
+//     @content;
+//   }
+// }
 @mixin media-sm-md {
   @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
     @content;

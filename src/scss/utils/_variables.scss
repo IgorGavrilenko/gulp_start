@@ -60,20 +60,6 @@ $padding-right: 15px;
 $padding-left: 15px;
 $cont-width: 1200px;
 
-// grid
-
-$g-parent-class: "grid";
-$g-child-class: "grid__item";
-
-//  SVG background
-
-// pattern.svg
-// pattern.png
-// pattern@2x.png
-
-$image-path: '../img' !default;
-$fallback-extension: 'png' !default;
-$retina-suffix: '@2x';
 
 
 $hr-color: #eee !default;

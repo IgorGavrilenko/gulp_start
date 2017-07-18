@@ -1,43 +1,103 @@
 /* GRID */
 
-.#{$g-parent-class} {
-    letter-spacing: -0.31em;
-    *letter-spacing: normal;
-    *word-spacing: -0.43em;
-    text-rendering: optimizespeed;
-    font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
-    display: -webkit-flex;
-    -webkit-flex-flow: row wrap;
-    display: -ms-flexbox;
-    -ms-flex-flow: row wrap;
-    -ms-align-content: flex-start;
-    -webkit-align-content: flex-start;
-    align-content: flex-start;
-    > .#{$g-child-class} {
-        position: relative;
-        display: inline-block;
-        *display: inline;
-        zoom: 1;
-        width: 100%;
-        letter-spacing: normal;
-        word-spacing: normal;
-        vertical-align: top;
-        text-rendering: auto;
-      }
-}
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    table .#{$g-parent-class} {
-        display: block;
+// @include nest-grid('.class-name');
+
+@mixin nest-grid($nest-grid) {
+   > #{$nest-grid} {
+        clear: none;
+        float: left;
+        margin: 0 !important;
     }
 }
-.opera-only:-o-prefocus,
-.#{$g-parent-class} {
-    word-spacing: -0.43em;
+
+// .class-name {
+//     @include clearfix();
+//     @include col-sm-md(2, true);
+//     @include col-md(3);
+// }
+
+@mixin col-sm ($col, $start: true) {
+    @media (min-width: #{$sm-width}) {
+        &__item {
+            @if $start == true {
+                float: left;
+                min-height: 1px;
+            }
+            width: 100%/$col;
+        }
+        &__item:nth-child(#{$col}n+1) {
+            clear: left;
+        }
+    }
 }
-
-/* custom font stack for content */
-
-.#{$g-parent-class} .#{$g-child-class} {
-    font-family: $font-family-base;
+@mixin col-md ($col, $start: false) {
+  @media (min-width: #{$md-width}) {
+    &__item {
+        @if $start == true {
+            float: left;
+            min-height: 1px;
+        }
+        width: 100%/$col;
+    }
+    &__item:nth-child(#{$col}n+1) {
+        clear: left;
+    }
+  }
+}
+@mixin col-lg ($col, $start: false) {
+  @media (min-width: #{$lg-width}) {
+    &__item {
+        @if $start == true {
+            float: left;
+            min-height: 1px;
+        }
+        width: 100%/$col;
+    }
+    &__item:nth-child(#{$col}n+1) {
+        clear: left;
+    }
+  }
+}
+@mixin col-sm-md ($col, $start: false) {
+  @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
+    &__item {
+        @if $start == true {
+            float: left;
+            min-height: 1px;
+        }
+        width: 100%/$col;
+    }
+    &__item:nth-child(#{$col}n+1) {
+        clear: left;
+    }
+  }
+}
+@mixin col-sm-lg ($col, $start: false) {
+  @media (min-width: #{$sm-width}) and (max-width: #{$lg-width - 1px}) {
+    &__item {
+        @if $start == true {
+            float: left;
+            min-height: 1px;
+        }
+        width: 100%/$col;
+    }
+    &__item:nth-child(#{$col}n+1) {
+        clear: left;
+    }
+  }
+}
+@mixin col-md-lg ($col, $start: false) {
+  @media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
+    &__item {
+        @if $start == true {
+            float: left;
+            min-height: 1px;
+        }
+        width: 100%/$col;
+    }
+    &__item:nth-child(#{$col}n+1) {
+        clear: left;
+    }
+  }
 }
 

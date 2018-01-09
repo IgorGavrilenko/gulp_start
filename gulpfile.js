@@ -1,5 +1,5 @@
 // npm i
-// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf main-bower-files  gulpSequence gulp-main-bower-files browser-sync node-bourbon
+// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf main-bower-files  gulpSequence gulp-main-bower-files browser-sync node-bourbon pump
 // bower i
 // gulp bowerFiles
 // gulp (watch)

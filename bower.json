@@ -15,7 +15,6 @@
   "dependencies": {
     "jquery": "#1.12.4",
     "normalize.css": "#",
-    "slicknav": "#",
     "retinajs": "#",
     "slick-carousel": "#"
   },

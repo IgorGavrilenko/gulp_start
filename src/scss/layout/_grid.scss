@@ -1,103 +1,186 @@
 /* GRID */
 
-// @include nest-grid('.class-name');
-
-@mixin nest-grid($nest-grid) {
-   > #{$nest-grid} {
-        clear: none;
-        float: left;
-        margin: 0 !important;
-    }
-}
-
 // .class-name {
 //     @include clearfix();
-//     @include col-sm-md(2, true);
-//     @include col-md(3);
+//     @include col-sm(2, false, true);
 // }
-
-@mixin col-sm ($col, $start: true) {
-    @media (min-width: #{$sm-width}) {
-        &__item {
-            @if $start == true {
-                float: left;
-                min-height: 1px;
-            }
+@mixin col ($col: false, $gatter: false, $start: false) {
+    @if $gatter !=false {
+        margin-right: -#{$gatter}px;
+        margin-left: -#{$gatter}px;
+    }
+    &__item {
+        @if $start !=false {
+            float: left;
+            min-height: 1px;
+        }
+        @if $gatter !=false {
+            padding-right: #{$gatter}px;
+            padding-left: #{$gatter}px;
+        }
+        @if $col !=false {
             width: 100%/$col;
         }
+    }
+    @if $col !=false {
         &__item:nth-child(#{$col}n+1) {
             clear: left;
         }
     }
 }
-@mixin col-md ($col, $start: false) {
-  @media (min-width: #{$md-width}) {
-    &__item {
-        @if $start == true {
-            float: left;
-            min-height: 1px;
+@mixin col-sm ($col: false, $gatter: false, $start: false) {
+    @media (min-width: #{$sm-width}) {
+        @if $gatter !=false {
+            margin-right: -#{$gatter}px;
+            margin-left: -#{$gatter}px;
         }
-        width: 100%/$col;
-    }
-    &__item:nth-child(#{$col}n+1) {
-        clear: left;
-    }
-  }
-}
-@mixin col-lg ($col, $start: false) {
-  @media (min-width: #{$lg-width}) {
-    &__item {
-        @if $start == true {
-            float: left;
-            min-height: 1px;
+        &__item {
+            @if $start !=false {
+                float: left;
+                min-height: 1px;
+            }
+            @if $gatter !=false {
+                padding-right: #{$gatter}px;
+                padding-left: #{$gatter}px;
+            }
+            @if $col !=false {
+                width: 100%/$col;
+            }
         }
-        width: 100%/$col;
-    }
-    &__item:nth-child(#{$col}n+1) {
-        clear: left;
-    }
-  }
-}
-@mixin col-sm-md ($col, $start: false) {
-  @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
-    &__item {
-        @if $start == true {
-            float: left;
-            min-height: 1px;
+        @if $col !=false {
+            &__item:nth-child(#{$col}n+1) {
+                clear: left;
+            }
         }
-        width: 100%/$col;
     }
-    &__item:nth-child(#{$col}n+1) {
-        clear: left;
-    }
-  }
 }
-@mixin col-sm-lg ($col, $start: false) {
-  @media (min-width: #{$sm-width}) and (max-width: #{$lg-width - 1px}) {
-    &__item {
-        @if $start == true {
-            float: left;
-            min-height: 1px;
+@mixin col-md ($col: false, $gatter: false, $start: false) {
+    @media (min-width: #{$md-width}) {
+        @if $gatter !=false {
+            margin-right: -#{$gatter}px;
+            margin-left: -#{$gatter}px;
         }
-        width: 100%/$col;
-    }
-    &__item:nth-child(#{$col}n+1) {
-        clear: left;
-    }
-  }
-}
-@mixin col-md-lg ($col, $start: false) {
-  @media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
-    &__item {
-        @if $start == true {
-            float: left;
-            min-height: 1px;
+        &__item {
+            @if $start !=false {
+                float: left;
+                min-height: 1px;
+            }
+            @if $gatter !=false {
+                padding-right: #{$gatter}px;
+                padding-left: #{$gatter}px;
+            }
+            @if $col !=false {
+                width: 100%/$col;
+            }
         }
-        width: 100%/$col;
+        @if $col !=false {
+            &__item:nth-child(#{$col}n+1) {
+                clear: left;
+            }
+        }
     }
-    &__item:nth-child(#{$col}n+1) {
-        clear: left;
-    }
-  }
 }
-
+@mixin col-lg ($col: false, $gatter: false, $start: false) {
+    @media (min-width: #{$lg-width}) {
+        @if $gatter !=false {
+            margin-right: -#{$gatter}px;
+            margin-left: -#{$gatter}px;
+        }
+        &__item {
+            @if $start !=false {
+                float: left;
+                min-height: 1px;
+            }
+            @if $gatter !=false {
+                padding-right: #{$gatter}px;
+                padding-left: #{$gatter}px;
+            }
+            @if $col !=false {
+                width: 100%/$col;
+            }
+        }
+        @if $col !=false {
+            &__item:nth-child(#{$col}n+1) {
+                clear: left;
+            }
+        }
+    }
+}
+@mixin col-sm-md ($col: false, $gatter: false, $start: false) {
+    @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
+        @if $gatter !=false {
+            margin-right: -#{$gatter}px;
+            margin-left: -#{$gatter}px;
+        }
+        &__item {
+            @if $start !=false {
+                float: left;
+                min-height: 1px;
+            }
+            @if $gatter !=false {
+                padding-right: #{$gatter}px;
+                padding-left: #{$gatter}px;
+            }
+            @if $col !=false {
+                width: 100%/$col;
+            }
+        }
+        @if $col !=false {
+            &__item:nth-child(#{$col}n+1) {
+                clear: left;
+            }
+        }
+    }
+}
+@mixin col-sm-lg ($col: false, $gatter: false, $start: false) {
+    @media (min-width: #{$sm-width}) and (max-width: #{$lg-width - 1px}) {
+        @if $gatter !=false {
+            margin-right: -#{$gatter}px;
+            margin-left: -#{$gatter}px;
+        }
+        &__item {
+            @if $start !=false {
+                float: left;
+                min-height: 1px;
+            }
+            @if $gatter !=false {
+                padding-right: #{$gatter}px;
+                padding-left: #{$gatter}px;
+            }
+            @if $col !=false {
+                width: 100%/$col;
+            }
+        }
+        @if $col !=false {
+            &__item:nth-child(#{$col}n+1) {
+                clear: left;
+            }
+        }
+    }
+}
+@mixin col-md-lg ($col: false, $gatter: false, $start: false) {
+    @media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
+        @if $gatter !=false {
+            margin-right: -#{$gatter}px;
+            margin-left: -#{$gatter}px;
+        }
+        &__item {
+            @if $start !=false {
+                float: left;
+                min-height: 1px;
+            }
+            @if $gatter !=false {
+                padding-right: #{$gatter}px;
+                padding-left: #{$gatter}px;
+            }
+            @if $col !=false {
+                width: 100%/$col;
+            }
+        }
+        @if $col !=false {
+            &__item:nth-child(#{$col}n+1) {
+                clear: left;
+            }
+        }
+    }
+}

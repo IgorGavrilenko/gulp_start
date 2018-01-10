@@ -1,3 +1,4 @@
+$output-bourbon-deprecation-warnings: false;
 @import "bourbon";
 
 @mixin text-truncate() {
@@ -28,6 +29,12 @@
   display: inline-block;
   vertical-align: top;
 }
+// margin
+@mixin margin-a() {
+    margin-right: auto;
+    margin-left: auto;
+}
+
 // img
 
 @mixin img-resp() {
@@ -67,6 +74,11 @@
 
 // media max
 
+@mixin xs {
+  @media (max-width: #{$xs-width - 1px}) {
+    @content;
+  }
+}
 @mixin max-sm {
   @media (max-width: #{$sm-width - 1px}) {
     @content;
@@ -97,6 +109,11 @@
 }
 @mixin lg {
   @media (min-width: #{$lg-width}) {
+    @content;
+  }
+}
+@mixin xlg {
+  @media (min-width: #{$xlg-width}) {
     @content;
   }
 }

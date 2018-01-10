@@ -8,9 +8,11 @@
 /* container */
 
 .container {
-    margin: 0 auto;
+    position: relative;
+    @include margin-a();
     padding-left: $padding-left;
     padding-right: $padding-right;
-    max-width: $cont-width;
+    min-width: $cont-min-width;
+    max-width: $cont-max-width;
+    @include clearfix();
 }
-

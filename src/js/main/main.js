@@ -1,1 +1,0 @@
-//= partials/default.js

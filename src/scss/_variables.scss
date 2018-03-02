@@ -26,6 +26,7 @@ $font-size-body: 100% !default;
 
 $link-color: #0275d8 !default;
 $link-color-active: #014c8c !default;
+$link-color-visited: purple;
 $link-decor: none;
 $link-decor-active: underline !default;
 
@@ -41,18 +42,26 @@ $z-xl: 5 !default;
 
 // media
 
-$xs-width: 599px !default;
+$xs-width: 480px !default;
 $sm-width: 600px !default;
 $md-width: 900px !default;
 $lg-width: 1200px !default;
-$xlg-width: 1800px !default;
+$xlg-width: 1600px !default;
+
+// bs3 media
+
+// $xs-width: 576px !default;
+// $sm-width: 768px !default;
+// $md-width: 992px !default;
+// $lg-width: 1200px !default;
+// $xlg-width: 1600px !default;
 
 // container
 
 $padding-right: 15px;
 $padding-left: 15px;
 $cont-min-width: 270px;
-$cont-width: 1200px;
+$cont-max-width: 1200px;
 
 
 

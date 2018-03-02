@@ -1,5 +1,5 @@
 // npm i
-// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf gulpSequence browser-sync node-bourbon pump
+// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf gulpSequence browser-sync node-bourbon pump gulp-concat
 // bower i
 // gulp bowerFiles
 // gulp (watch)
@@ -18,6 +18,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     pump = require('pump'),
     rename = require("gulp-rename"),
+    concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
     sass = require('gulp-sass'),
     rimraf = require('rimraf'),
@@ -34,22 +35,34 @@ var gulp = require('gulp'),
 
 // bowerJs
 gulp.task('bowerJs', function() {
-    gulp.src('bower_components/**/*.js')
+    gulp.src('src/js/rigger/vendors.js')
         .pipe(rigger())
-        .pipe(gulp.dest('src/js/scripts.js'))
+        .pipe(gulp.dest('src/js/'))
         .pipe(reload({ stream: true }));
 });
 
 // bowerCss
+
 gulp.task('bowerCss', function() {
-    gulp.src('bower_components/**/*.*')
-        .pipe(rigger())
-        .pipe(gulp.dest('src/scss/'))
-        .pipe(reload({ stream: true }));
+    return gulp.src([
+            './bower_components/slick-carousel/slick/slick.css'
+        ])
+        .pipe(concat('_vendors.scss'))
+        .pipe(gulp.dest('src/scss/'));
+});
+gulp.task('bowerNormalizeCss', function() {
+    return gulp.src([
+            './bower_components/normalize.css/normalize.css'
+        ])
+        .pipe(concat('_normalize.scss'))
+        .pipe(gulp.dest('src/scss/'));
 });
 
+
 // bowerfiles
-gulp.task('bowerFiles', ['bowerJs', 'bowerCss']);
+gulp.task('bowerFilesJs', ['bowerJs']);
+gulp.task('bowerFilesCss', ['bowerCss', 'bowerNormalizeCss']);
+gulp.task('bowerFiles', ['bowerFilesJs', 'bowerFilesCss']);
 
 // DEV
 /////////////////////////////////////////
@@ -76,19 +89,9 @@ gulp.task('htmlDev', function() {
 // js
 
 gulp.task('jsDev', function() {
-    gulp.src('src/js/*.js')
-        .pipe(reload({ stream: true }));
-});
-// img
-
-gulp.task('imgDev', function() {
-    gulp.src('src/img/**/*.*')
-        .pipe(reload({ stream: true }));
-});
-// fonts
-
-gulp.task('fontsDev', function() {
-    gulp.src('src/fonts/**/*.*')
+    gulp.src('src/js/rigger/**/*.js')
+        .pipe(rigger())
+        .pipe(gulp.dest('src/js/'))
         .pipe(reload({ stream: true }));
 });
 
@@ -110,8 +113,8 @@ gulp.task('webserver', function() {
 // WATCH
 
 gulp.task('watch', function() {
-    watch(['bower_components/'], function(event, cb) {
-        gulp.start('bowerFiles');
+    watch(['src/js/rigger/vendors.js'], function(event, cb) {
+        gulp.start('bowerFilesJs');
     });
     watch(['src/template/**/*.html'], function(event, cb) {
         gulp.start('htmlDev');
@@ -119,14 +122,8 @@ gulp.task('watch', function() {
     watch(['src/scss/**/*.scss'], function(event, cb) {
         gulp.start('scssDev');
     });
-    watch(['src/js/**/*.js'], function(event, cb) {
+    watch(['src/js/rigger/scripts/*.js'], function(event, cb) {
         gulp.start('jsDev');
-    });
-    watch(['src/img/**/*.*'], function(event, cb) {
-        gulp.start('imgDev');
-    });
-    watch(['src/fonts/**/*.*'], function(event, cb) {
-        gulp.start('fontsDev');
     });
 });
 

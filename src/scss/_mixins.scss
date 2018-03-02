@@ -35,7 +35,7 @@ $output-bourbon-deprecation-warnings: false;
     margin-left: auto;
 }
 
-// img
+// resp
 
 @mixin img-resp() {
   width: auto\9;
@@ -94,9 +94,19 @@ $output-bourbon-deprecation-warnings: false;
     @content;
   }
 }
+@mixin max-xlg {
+  @media (max-width: #{$xlg-width - 1px}) {
+    @content;
+  }
+}
 
 // media min
 
+@mixin xs {
+  @media (min-width: #{$xs-width}) {
+    @content;
+  }
+}
 @mixin sm {
   @media (min-width: #{$sm-width}) {
     @content;
@@ -120,6 +130,26 @@ $output-bourbon-deprecation-warnings: false;
 
 // media min and max
 
+@mixin media-xs-sm {
+  @media (min-width: #{$xs-width}) and (max-width: #{$sm-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-xs-md {
+  @media (min-width: #{$xs-width}) and (max-width: #{$md-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-xs-lg {
+  @media (min-width: #{$xs-width}) and (max-width: #{$lg-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-xs-xlg {
+  @media (min-width: #{$xs-width}) and (max-width: #{$xlg-width - 1px}) {
+    @content;
+  }
+}
 @mixin media-sm-md {
   @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
     @content;
@@ -130,11 +160,27 @@ $output-bourbon-deprecation-warnings: false;
     @content;
   }
 }
+@mixin media-sm-xlg {
+  @media (min-width: #{$sm-width}) and (max-width: #{$xlg-width - 1px}) {
+    @content;
+  }
+}
 @mixin media-md-lg {
   @media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
     @content;
   }
 }
+@mixin media-md-xlg {
+  @media (min-width: #{$md-width}) and (max-width: #{$xlg-width - 1px}) {
+    @content;
+  }
+}
+@mixin media-lg-xlg {
+  @media (min-width: #{$lg-width}) and (max-width: #{$xlg-width - 1px}) {
+    @content;
+  }
+}
+
 // media custom prop
 
 // p {
@@ -213,5 +259,16 @@ $output-bourbon-deprecation-warnings: false;
     }
     &:focus:-moz-placeholder {
       color: transparent !important;
+    }
+}
+
+// button
+
+@mixin btn-hover() {
+    &:active,
+    &:hover {
+        background-color: $btn-hover !important;
+        border-color:  $btn-hover !important;
+        text-decoration: none !important;
     }
 }

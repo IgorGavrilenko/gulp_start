@@ -50,18 +50,10 @@ gulp.task('bowerCss', function() {
         .pipe(concat('_vendors.scss'))
         .pipe(gulp.dest('src/scss/'));
 });
-gulp.task('bowerNormalizeCss', function() {
-    return gulp.src([
-            './bower_components/normalize.css/normalize.css'
-        ])
-        .pipe(concat('_normalize.scss'))
-        .pipe(gulp.dest('src/scss/'));
-});
-
 
 // bowerfiles
 gulp.task('bowerFilesJs', ['bowerJs']);
-gulp.task('bowerFilesCss', ['bowerCss', 'bowerNormalizeCss']);
+gulp.task('bowerFilesCss', ['bowerCss']);
 gulp.task('bowerFiles', ['bowerFilesJs', 'bowerFilesCss']);
 
 // DEV

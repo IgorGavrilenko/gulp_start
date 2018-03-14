@@ -1,10 +1,11 @@
-$output-bourbon-deprecation-warnings: false;
-@import "bourbon";
 
 @mixin text-truncate() {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
 }
 
 // alinement
@@ -225,11 +226,9 @@ $output-bourbon-deprecation-warnings: false;
 @mixin clearfix() {
   &:before,
   &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
     clear: both;
+    content: "";
+    display: block;
   }
 }
 // input placeholder

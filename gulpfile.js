@@ -1,5 +1,5 @@
 // npm i
-// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf gulpSequence browser-sync node-bourbon pump gulp-concat
+// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf gulpSequence browser-sync pump gulp-concat
 // bower i
 // gulp bowerFiles
 // gulp (watch)
@@ -23,7 +23,6 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     rimraf = require('rimraf'),
     gulprimraf = require('gulp-rimraf'),
-    bourbon = require('node-bourbon'),
     gulpSequence = require('gulp-sequence'),
     browserSync = require("browser-sync"),
     reload = browserSync.reload,
@@ -63,9 +62,7 @@ gulp.task('bowerFiles', ['bowerFilesJs', 'bowerFilesCss']);
 gulp.task('scssDev', function() {
     gulp.src('src/scss/**/*.scss')
         .pipe(sourcemaps.init())
-        .pipe(sass({
-            includePaths: require('node-bourbon').includePaths
-        }).on('error', sass.logError))
+        .pipe(sass().on('error', sass.logError))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('src/css/'))
         .pipe(reload({ stream: true }));

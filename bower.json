@@ -13,10 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    // "bootstrap": #3.3.7,
-    // "jQuery.dotdotdot": #,
     "jquery": "#1.12.4",
-    // "normalize.css": "#7.0.0",
     "retinajs": "#",
     "slick-carousel": "#"
   },

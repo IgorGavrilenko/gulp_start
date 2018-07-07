@@ -1,11 +1,9 @@
 {
-  "name": "gulp_build",
-  "description": "",
+  "name": "default",
+  "version": "1.0.0",
   "main": "gulpfile.js",
-  "license": "ISC",
-  "moduleType": [],
-  "homepage": "",
   "ignore": [
+    ".jshintrc",
     "**/.*",
     "node_modules",
     "bower_components",
@@ -13,9 +11,14 @@
     "tests"
   ],
   "dependencies": {
+    "slick-slide": "1.8.1",
+    "Respond": "1.4.2",
     "jquery": "#1.12.4",
-    "retinajs": "#",
-    "slick-carousel": "#"
+    "respond": "Respond#1.4.2",
+    "html5shiv": "3.7.3",
+    "selectivizr": "1.0.2",
+    "normalize-css": "normalize.css#7.0.0",
+    "slick-carousel": "slick-slide#1.8.1"
   },
   "devDependencies": {}
 }

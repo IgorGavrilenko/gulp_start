@@ -1,2 +1,3 @@
-//= scripts/top-main.js
-//= scripts/script.js
+'use strict';
+
+

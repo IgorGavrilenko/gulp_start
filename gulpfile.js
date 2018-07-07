@@ -1,11 +1,3 @@
-// npm i
-// npm install --save-dev gulp gulp-autoprefixer gulp-csscomb gulp-imagemin gulp-minify-css gulp-rename gulp-rigger gulp-rimraf gulp-sass gulp-sourcemaps gulp-uglify gulp-watch imagemin-pngquant rimraf gulpSequence browser-sync pump gulp-concat
-// bower i
-// gulp bowerFiles
-// gulp (watch)
-// gulp build
-// gulp min
-
 'use strict';
 
 var gulp = require('gulp'),
@@ -15,10 +7,10 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     csscomb = require('gulp-csscomb'),
     minifyCss = require('gulp-minify-css'),
+    concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     pump = require('pump'),
     rename = require("gulp-rename"),
-    concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
     sass = require('gulp-sass'),
     rimraf = require('rimraf'),
@@ -26,183 +18,222 @@ var gulp = require('gulp'),
     gulpSequence = require('gulp-sequence'),
     browserSync = require("browser-sync"),
     reload = browserSync.reload,
-    pngquant = require('imagemin-pngquant');
+    pngquant = require('imagemin-pngquant'),
+    path = {
+        srcBower: {
+            js: 'src/js/rigger/scripts.js',
+            helpers: 'src/js/rigger/helpers.js',
+            styles: 'src/scss/rigger/*.css',
+            slick: 'src/libs/slick-carousel/slick/slick.css',
+            normalize: 'src/libs/normalize-css/normalize.css'
+        },
+        buildBower: {
+            js: 'public_html/js/',
+            helpers: 'public_html/js/',
+            styles: 'src/scss/'
+        },
+        fileConcatCss: {
+            normalize: '_normalize.scss',
+            libs: '_libs.scss'
+        },
+        srcDev: {
+            html: 'src/html/*.html',
+            js: 'src/js/rigger/main.js',
+            scss: 'src/scss/**/*.scss',
+            img: 'src/img/**/*.*',
+            fonts: 'src/fonts/**/*.*'
+        },
+        srcOptim: {
+            js: 'public_html/js/**/*.js',
+            css: 'public_html/css/**/*.css',
+            img: 'public_html/img/**/*.*',
+            fonts: 'public_html/fonts/**/*.*'
+        },
+        buildDev: {
+            html: 'public_html/',
+            js: 'public_html/js/',
+            scss: 'public_html/css/',
+            img: 'public_html/img/',
+            fonts: 'public_html/fonts/'
+        },
+        buildOptim: {
+            js: 'public_html/js/',
+            css: 'public_html/css/',
+            img: 'public_html/img/'
+        },
+        watch: {
+            bower: 'src/libs/',
+            html: 'src/html/**/*.html',
+            js: 'src/js/**/*.js',
+            scss: 'src/scss/**/*.scss',
+            img: 'src/img/',
+            fonts: 'src/fonts/'
+        },
+        clean: 'public_html/'
+    },
+    config = {
+        server: {
+            baseDir: "public_html/"
+        },
+        tunnel: true,
+        host: 'localhost',
+        port: 9000,
+        logPrefix: "igor"
+    };
 
-
-// bowerFiles
-/////////////////////////////////////////
+// bowerCss
+gulp.task('bowerCss', function() {
+    return gulp.src([
+            path.srcBower.slick
+        ])
+        .pipe(concat(path.fileConcatCss.libs))
+        .pipe(gulp.dest(path.buildBower.styles));
+});
+// bowerNormalize
+gulp.task('bowerNormalize', function() {
+    return gulp.src(path.srcBower.normalize)
+        .pipe(concat(path.fileConcatCss.normalize))
+        .pipe(gulp.dest(path.buildBower.styles));
+});
 
 // bowerJs
 gulp.task('bowerJs', function() {
-    gulp.src('src/js/rigger/vendors.js')
+    gulp.src(path.srcBower.js)
         .pipe(rigger())
-        .pipe(gulp.dest('src/js/'))
-        .pipe(reload({ stream: true }));
+        .pipe(gulp.dest(path.buildBower.js));
+});
+// bowerHelpers
+gulp.task('bowerHelpers', function() {
+    gulp.src(path.srcBower.helpers)
+        .pipe(rigger())
+        .pipe(gulp.dest(path.buildBower.helpers));
 });
 
-// bowerCss
-
-gulp.task('bowerCss', function() {
-    return gulp.src([
-            './bower_components/slick-carousel/slick/slick.css'
-        ])
-        .pipe(concat('_vendors.scss'))
-        .pipe(gulp.dest('src/scss/'));
+// bowerFiles
+gulp.task('bowerFiles', ['bowerCss', 'bowerNormalize', 'bowerJs', 'bowerHelpers'], function() {
+        gulp.pipe(reload({ stream: true }));
 });
 
-// bowerfiles
-gulp.task('bowerFilesJs', ['bowerJs']);
-gulp.task('bowerFilesCss', ['bowerCss']);
-gulp.task('bowerFiles', ['bowerFilesJs', 'bowerFilesCss']);
-
-// DEV
-/////////////////////////////////////////
-// scss
+// scssDev
 
 gulp.task('scssDev', function() {
-    gulp.src('src/scss/**/*.scss')
+    gulp.src(path.srcDev.scss)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('src/css/'))
+        .pipe(gulp.dest(path.buildDev.scss))
         .pipe(reload({ stream: true }));
 });
-// html
 
+// htmlDev
 gulp.task('htmlDev', function() {
-    gulp.src('src/template/*.html')
+    gulp.src(path.srcDev.html)
         .pipe(rigger())
-        .pipe(gulp.dest('src/'))
+        .pipe(gulp.dest(path.buildDev.html))
         .pipe(reload({ stream: true }));
 });
-// js
 
+// jsDev
 gulp.task('jsDev', function() {
-    gulp.src('src/js/rigger/**/*.js')
+    gulp.src(path.srcDev.js)
         .pipe(rigger())
-        .pipe(gulp.dest('src/js/'))
+        .pipe(gulp.dest(path.buildDev.js))
         .pipe(reload({ stream: true }));
 });
 
-// webserver
+// imgDev
+gulp.task('imgDev', function() {
+    gulp.src(path.srcDev.img)
+        .pipe(gulp.dest(path.buildDev.img))
+        .pipe(reload({ stream: true }));
+});
 
-var config = {
-    server: {
-        baseDir: "./src"
-    },
-    tunnel: true,
-    host: 'localhost',
-    port: 9000,
-    logPrefix: "igor"
-};
+// fontsDev
+gulp.task('fontsDev', function() {
+    gulp.src(path.srcDev.fonts)
+        .pipe(gulp.dest(path.buildDev.fonts))
+        .pipe(reload({ stream: true }));
+});
+
+// WATCH
+gulp.task('watch', function() {
+    watch([path.watch.bower], function(event, cb) {
+        gulp.start(['bowerFiles']);
+    });
+    watch([path.watch.scss], function(event, cb) {
+        gulp.start('scssDev');
+    });
+    watch([path.watch.html], function(event, cb) {
+        gulp.start('htmlDev');
+    });
+    watch([path.watch.js], function(event, cb) {
+        gulp.start('jsDev');
+    });
+    watch([path.watch.img], function(event, cb) {
+        gulp.start('imgDev');
+    });
+    watch([path.watch.fonts], function(event, cb) {
+        gulp.start('fontsDev');
+    });
+});
+
+// WEBSERVER
+
 gulp.task('webserver', function() {
     browserSync(config);
 });
 
-// WATCH
-
-gulp.task('watch', function() {
-    watch(['src/js/rigger/vendors.js'], function(event, cb) {
-        gulp.start('bowerFilesJs');
-    });
-    watch(['src/template/**/*.html'], function(event, cb) {
-        gulp.start('htmlDev');
-    });
-    watch(['src/scss/**/*.scss'], function(event, cb) {
-        gulp.start('scssDev');
-    });
-    watch(['src/js/rigger/scripts/*.js'], function(event, cb) {
-        gulp.start('jsDev');
-    });
-});
-
-
+// DEFAULT
 gulp.task('default', [
     'watch',
     'webserver'
 ]);
 
-
-
-// BUILD
-/////////////////////////////////////////
-// del
-
-gulp.task('del', function(cb) {
-    rimraf('./build', cb);
+// cleanBuild
+gulp.task('cleanBuild', function(cb) {
+    rimraf(path.clean, cb);
 });
-// html
 
-gulp.task('html', function() {
-    gulp.src('src/*.html')
-        .pipe(gulp.dest('build/'))
-});
-// css
-
-gulp.task('css', function() {
-    gulp.src('src/css/*.css')
+// cssOptim
+gulp.task('cssOptim', function() {
+    gulp.src(path.srcOptim.css)
         .pipe(autoprefixer('last 15 versions'))
         .pipe(csscomb())
-        .pipe(gulp.dest('build/css/'))
-});
-// js
-
-gulp.task('js', function() {
-    gulp.src('src/js/*.js')
-        .pipe(gulp.dest('build/js/'))
+        .pipe(gulp.dest(path.buildOptim.css));
 });
 
-// helpers
-
-gulp.task('helpers', function() {
-    gulp.src('src/helpers/*.js')
-        .pipe(gulp.dest('build/helpers/'))
-});
-
-// img
-
-gulp.task('img', function() {
-    gulp.src('src/img/**/*.*')
+// imgOptim
+gulp.task('imgOptim', function() {
+    gulp.src(path.srcOptim.img)
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{ removeViewBox: false }],
             use: [pngquant()],
             interlaced: true
         }))
-        .pipe(gulp.dest('build/img/'));
-});
-// fonts
-
-gulp.task('fonts', function() {
-    gulp.src('src/fonts/**/*.*')
-        .pipe(gulp.dest('build/fonts/'))
+        .pipe(gulp.dest(path.buildOptim.img));
 });
 
-// min
-
-gulp.task('css-min', function() {
-    gulp.src('src/css/*.css')
+// cssMin
+gulp.task('cssMin', function() {
+    gulp.src(path.srcOptim.css)
         .pipe(minifyCss({ compatibility: 'ie8' }))
-        .pipe(rename({
-            suffix: '.min',
-        }))
-        .pipe(gulp.dest('build/css/'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(path.buildOptim.css));
 });
-gulp.task('js-min', function(cb) {
+
+// jsMin
+gulp.task('jsMin', function(cb) {
     pump([
-            gulp.src('src/js/plugins.min.js'),
+            gulp.src(path.srcOptim.js),
             uglify(),
-            gulp.dest('build/js/')
+            rename({suffix: '.min'}),
+            gulp.dest(path.buildOptim.js)
         ],
         cb
     );
 });
-gulp.task('min', [
-    'css-min', 'js-min'
-]);
+gulp.task('minFiles', ['cssMin', 'jsMin']);
 
-// build
-
-gulp.task('build', gulpSequence(
-    ['del'], ['html', 'js', 'css', 'fonts', 'img', 'helpers']
-));
+// filesOptimiz
+gulp.task('filesOptimiz', ['cssOptim', 'imgOptim', 'minFiles']);

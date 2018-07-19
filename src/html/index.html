@@ -5,16 +5,29 @@
     </head>
     <body>
         <div class="wrapper">
-            //= rigger/header-start.html
-            //= rigger/header-stop.html
-            //= rigger/content-start.html
-            //= rigger/content-stop.html
-            //= rigger/sidebar-start.html
-            //= rigger/sidebar-stop.html
-            //= rigger/footer-start.html
-            //= rigger/footer-stop.html
+            <header class="header">
+                //= rigger/logo.html
+                //= rigger/header-menu.html
+            </header>
+            <!--/header-->
+            <main class="content">
+                //= rigger/breadcrumb.html
+                <section class="section">
+                    //= rigger/section-content.html
+                </section>
+            </main>
+            <!--/content-->
+            <aside class="sidebar">
+
+            </aside>
+            <!--/sidebar-->
+            <footer class="footer">
+                //= rigger/footer-menu.html
+                //= rigger/copyrighted.html
+            </footer>
+            <!--/footer-->
         </div>
-        <!-- /wrapper -->
+        <!--/wrapper-->
         //= rigger/scripts.html
     </body>
 </html>

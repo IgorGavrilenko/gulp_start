@@ -8,7 +8,7 @@
     word-wrap: normal;
 }
 
-// alinement
+// alignement
 
 @mixin vert-dtc-m() {
   display: table-cell;
@@ -75,7 +75,7 @@
 
 // media max
 
-@mixin xs {
+@mixin max-xs {
   @media (max-width: #{$xs-width - 1px}) {
     @content;
   }

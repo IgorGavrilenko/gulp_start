@@ -6,6 +6,17 @@ $font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace !defau
 
 // Colors
 
+// $:  !default;
+// $:  !default;
+// $:  !default;
+// $:  !default;
+// $:  !default;
+// $:  !default;
+// $:  !default;
+// $:  !default;
+// $:  !default;
+// $:  !default;
+// $:  !default;
 
 
 // Base
@@ -22,13 +33,46 @@ $selection: #b3d4fc;
 
 $font-size-body: 100% !default;
 
-// Links
+// Link
 
+$link-ff: inherit !default;
+$link-fz: inherit !default;
+$link-lh: inherit !default;
 $link-color: #0275d8 !default;
-$link-color-active: #014c8c !default;
-$link-color-visited: purple;
-$link-decor: none;
-$link-decor-active: underline !default;
+$link-bd: none !default;
+$link-bg: transparent !default;
+$link-sh: none !default;
+$link-decor: none !default;
+
+// Link hover-active-focus-visited
+
+$link-color-act: #014c8c !default;
+$link-color-vis: purple;
+$link-decor-act: underline !default;
+
+// button
+
+$btn-ff: inherit !default;
+$btn-fz: inherit !default;
+$btn-lh: 1 !default;
+// $btn-color:  !default;
+$btn-display: inline-block !default;
+$btn-brad: 0 !default;
+$btn-bdw: 1px !default;
+$btn-bds: solid !default;
+$btn-width: auto !default;
+$btn-height: auto !default;
+$btn-pad: 6px 12px !default;
+$btn-sh: none !default;
+$btn-decor: none !default;
+// $btn-bg:  !default;
+
+// button hover-active-focus
+
+// $btn-color-act:  !default;
+// $btn-bg-act: !default;
+// $btn-bdc-act: !default;
+// $btn-btn-sh-act: !default;
 
 // Z-index master list
 
@@ -67,7 +111,7 @@ $cont-max-width: 1200px;
 
 $hr-color: #eee !default;
 $placeholder-color: #333 !default;
-// Components
-// button
 
-// $btn-hover:  !default;
+
+
+

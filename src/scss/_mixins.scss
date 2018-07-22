@@ -10,25 +10,29 @@
 
 // alignement
 
-@mixin vert-dtc-m() {
+@mixin v-dtc-m() {
   display: table-cell;
   vertical-align: middle;
 }
-@mixin vert-dtc-t() {
+@mixin v-dtc-t() {
   display: table-cell;
   vertical-align: top;
 }
-@mixin vert-dtc-b() {
+@mixin v-dtc-b() {
   display: table-cell;
   vertical-align: bottom;
 }
-@mixin vert-dib-m() {
+@mixin v-dib-m() {
   display: inline-block;
   vertical-align: middle;
 }
-@mixin vert-dib-top() {
+@mixin v-dib-t() {
   display: inline-block;
   vertical-align: top;
+}
+@mixin v-dib-b() {
+  display: inline-block;
+  vertical-align: bottom;
 }
 // margin
 @mixin margin-a() {
@@ -39,7 +43,7 @@
 // resp
 
 @mixin img-resp() {
-  width: auto\9;
+  width: auto;
   max-width: 100%;
   height: auto;
 }
@@ -224,13 +228,13 @@
 // clearfix
 
 @mixin clearfix() {
-  &:before,
   &:after {
     clear: both;
     content: "";
     display: block;
   }
 }
+
 // input placeholder
 
 @mixin placeholder($placeholder-color, $font-family-base){
@@ -263,11 +267,60 @@
 
 // button
 
-@mixin btn-hover() {
+ @mixin btn() {
+     font-family: $btn-ff;
+     font-size: $btn-fz;
+     line-height: $btn-lh;
+     color: $btn-color;
+     display: $btn-display;
+     border-width: $btn-bdw;
+     border-style: $btn-bds;
+     padding: $btn-pad;
+     width: $btn-width;
+     height: $btn-height;
+     text-transform: $btn-transform;
+     text-align: center;
+     text-decoration: $btn-decor;
+     background-color: $btn-bg;
+     border-radius: $btn-brad;
+ }
+
+
+@mixin btn-act() {
     &:active,
+    &:focus,
     &:hover {
-        background-color: $btn-hover !important;
-        border-color:  $btn-hover !important;
+        color: $btn-color-act;
+        border-color:  $btn-bdc-act !important;
         text-decoration: none !important;
+        background-color: $btn-bg-act !important;
+        box-shadow: $btn-sh-act !important;
+    }
+}
+// link
+
+@mixin link() {
+    font-family: $link-ff;
+    font-size: $link-fz;
+    line-height: $link-lh;
+    color: $link-color;
+    border: $link-bd;
+    text-decoration: $link-decor;
+    background-color: $link-bg;
+    box-shadow: $link-sh;
+}
+@mixin link-act() {
+    &:active,
+    &:focus,
+    &:hover {
+        color: $link-color-act;
+        border-color:  $link-bdc-act !important;
+        background-color: $link-bg-act !important;
+        text-decoration: $link-decor-act !important;
+        box-shadow: $btn-sh-act !important;
+    }
+    &:visited {
+        color: $link-color-vis;
+        text-decoration: $link-decor-act;
     }
 }

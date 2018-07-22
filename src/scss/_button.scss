@@ -1,23 +1,7 @@
 
 /* button */
 
-// @mixin btn-style() {
-//     font-size: ;
-//     display: ;
-//     border-radius: ;
-//     border-width: 2px;
-//     border-style: solid;
-//     width: ;
-//     padding: ;
-//     text-transform: uppercase;
-//     text-align: center;
-//     color: ;
-// }
-@mixin btn-hover() {
-    &:active,
-    &:hover {
-        background-color: $btn-hover !important;
-        border-color:  $btn-hover !important;
-        text-decoration: none !important;
-    }
+button {
+    @include btn()
+    @include btn-act()
 }

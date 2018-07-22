@@ -2,17 +2,6 @@
 /* link */
 
 a {
-  color: $link-color;
-  text-decoration: $link-decor;
+    @include link()
+    @include link-act()
 }
-a:active,
-a:focus,
-a:hover {
-  text-decoration: $link-decor-active;
-  color: $link-color-active;
-}
-a:visited {
-  text-decoration: $link-decor-active;
-  color: $link-color-visited;
-}
-
